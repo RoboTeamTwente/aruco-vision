@@ -75,6 +75,7 @@ bool CaptureBasler::startCapture() {
 		if (camera == NULL) {
 			if (!_buildCamera()) {
                 // Did not make a camera!
+				MUTEX_UNLOCK
                 return false;
             }
 		}

@@ -12,7 +12,7 @@
 #define VDATA_NO_QT
 #endif
 
-#include "rawimage.h"
+#include "../utils/rawimage.h"
 #include <string>
 #include <pylon/PylonIncludes.h>
 #include <pylon/PylonBase.h>
