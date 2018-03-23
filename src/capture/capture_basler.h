@@ -13,7 +13,8 @@
 #endif
 
 #include "../utils/rawimage.h"
-#include <string>
+#include "string.h"
+#include <stdlib.h>
 #include <pylon/PylonIncludes.h>
 #include <pylon/PylonBase.h>
 #include <pylon/PylonImage.h>
@@ -27,56 +28,58 @@
 
 class BaslerInitManager {
 public:
-	static void register_capture();
-	static void unregister_capture();
+    static void register_capture();
+
+    static void unregister_capture();
+
 //private:
-	static int count;
+    static int count;
 };
 
 class CaptureBasler {
 
 
 public:
-	CaptureBasler();
+    CaptureBasler();
 
-	~CaptureBasler();
+    ~CaptureBasler();
 
-	bool startCapture();
+    bool startCapture();
 
-	bool stopCapture();
+    bool stopCapture();
 
-	bool isCapturing() { return is_capturing; };
+    bool isCapturing() { return is_capturing; };
 
-	RawImage getFrame();
+    RawImage getFrame();
 
-	void releaseFrame();
+    void releaseFrame();
 
-	std::string getCaptureMethodName() const;
+    std::string getCaptureMethodName() const;
 
-	bool copyAndConvertFrame(const RawImage & src, RawImage & target);
-
-	void readAllParameterValues();
+    bool copyAndConvertFrame(const RawImage &src, RawImage &target);
 
 
 private:
-	bool is_capturing;
-	bool ignore_capture_failure;
-	Pylon::CBaslerGigEInstantCamera* camera;
-	Pylon::CGrabResultPtr grab_result;
-	Pylon::CImageFormatConverter converter;
-	int current_id;
-  	unsigned char* last_buf;
+    bool is_capturing;
+    bool ignore_capture_failure;
+    Pylon::CBaslerGigEInstantCamera *camera;
+    Pylon::CGrabResultPtr grab_result;
+    Pylon::CImageFormatConverter converter;
+    int current_id;
+    unsigned char *last_buf;
 
-  	void resetCamera(unsigned int new_id);
-  	bool _stopCapture();
-  	bool _buildCamera();
+    void resetCamera(unsigned int new_id);
+
+    bool _stopCapture();
+
+    bool _buildCamera();
 
 // A slight blur helps to reduce noise and improve color recognition.
 #ifdef OPENCV
-  	static const double blur_sigma;
-  	void gaussianBlur(RawImage& img);
-    void contrast(RawImage& img, double factor);
-    void sharpen(RawImage& img);
+    static const double blur_sigma;
+    void gaussianBlur(RawImage& img);
+  void contrast(RawImage& img, double factor);
+  void sharpen(RawImage& img);
 #endif
 };
 
