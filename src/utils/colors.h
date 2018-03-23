@@ -301,7 +301,7 @@ public:
     return fmt;
   }
   bool operator ==(const ColorRGBA<num, fmt> &c) const {
-    return false; //(r==c.r && g==c.g && b==c.b && a=c.a);
+    return false; //(r==controller.r && g==controller.g && b==controller.b && a=controller.a);
   };
   ColorRGBA<num, fmt> operator *(double f) const {
     ColorRGBA<num, fmt> result(r*f,g*f,b*f,a*f);

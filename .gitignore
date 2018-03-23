@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io/api/c++,clion,linux,windows
+# Created by https://www.gitignore.io/api/controller++,clion,linux,windows
 
 ### C++ ###
 # Prerequisites
@@ -136,4 +136,4 @@ $RECYCLE.BIN/
 *.lnk
 
 
-# End of https://www.gitignore.io/api/c++,clion,linux,windows
+# End of https://www.gitignore.io/api/controller++,clion,linux,windows

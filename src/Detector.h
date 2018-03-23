@@ -16,7 +16,7 @@
 #define SURFBOTTRACKING_MARKER_OFFSET 7.5 // Offset of the center of the marker from the center of the surfacebot in cm.
 
 
-class Tracker {
+class Detector {
 
 public:
 	/// these values store the play area size
@@ -28,7 +28,7 @@ public:
     /// \param originID id of marker that serves as origin.
     /// \param limitID id of marker that serves as limit.
     /// \param camId the OpenCV camera id to use for the tracking
-    explicit Tracker(int originID, int limitID);
+    explicit Detector(int originID, int limitID);
 
 
     /// Performs the tracking and return the PosRots in a vector. Performs the tracking for one frame of the input device.
@@ -64,7 +64,6 @@ private:
 	///returns the average resolution between each edge of the marker, by giving the vector that contains the corners of the marker
 	double getAvgRes(std::vector<cv::Point2f> corners);
 
-    //cv::VideoCapture inputVideo;
     double totalTime;
     int totalIterations;
 
@@ -75,6 +74,7 @@ private:
 
     cv::Mat cameraMatrix, distCoeffs;
     cv::Ptr<cv::aruco::Dictionary> dictionary = cv::aruco::Dictionary::create(20,3);
+    cv::Ptr<cv::aruco::DetectorParameters> detectorParams = cv::aruco::DetectorParameters::create();
 };
 
 
